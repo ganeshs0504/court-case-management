@@ -21,6 +21,15 @@
   <!-- Custom styles for this page -->
   <link href="../static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+  <style type="text/css">
+    
+    tr:hover {
+      background-color: #f5f5f5;
+      cursor: pointer;
+    }
+
+  </style>
+
 </head>
 
 <body id="page-top">
@@ -353,7 +362,7 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
+                    <tr onclick="document.location = &quot;{{ url_for('row_click') }}&quot;">
                       <td>Tiger Nixon</td>
                       <td>System Architect</td>
                       <td>Edinburgh</td>
@@ -860,6 +869,15 @@
       </div>
     </div>
   </div>
+
+
+<!--   <script>
+    
+    $('tr[data-href]').on("click", function() {
+    document.location = $(this).data('href');
+    });
+
+  </script> -->
 
   <!-- Bootstrap core JavaScript-->
   <script src="../static/vendor/jquery/jquery.min.js"></script>

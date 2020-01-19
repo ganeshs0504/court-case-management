@@ -74,6 +74,14 @@ def handle_client():
         year,month,day = map(int,x['Date Of Birth'].split('-'))
         x['age'] = (int((date.today() - date(year,month,day)).days / 365.2425 ) )
     return render_template('add_client.html',user_data = session['user_data'],clients=clients)
+
+
+@app.route('/testing1')
+def row_click():
+    return 'Hello World!'
+
+
+
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(port=3000)
+    app.run(debug=True)

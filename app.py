@@ -86,7 +86,11 @@ def handle_get_client(id):
         return render_template('login.html')
     u = Query()
     res = client_db.search(u.uid == id)
-    print(res)
+    for i in range(len(res[0]['Files'])):
+        if 'summary' in res[0]['Files'][i]:
+            res[0]['Files'][i] = 'summary\n'+open(res[0]['Files'][i],'r').read()
+
+    #print(res[0]['Files'])
     # try:
     return render_template('client.html',client_data=res[0],user_data=session['user_data'])
     # except:

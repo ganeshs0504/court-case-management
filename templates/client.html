@@ -35,6 +35,11 @@
         var id = 2
         var accept = '.xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf'
         window.onload = () => {
+
+
+
+
+
             document.getElementById('files_form').onchange = ()=>{
                 console.log('test')
                 var inp = document.createElement('input')
@@ -55,6 +60,10 @@
 
             }
         }
+
+
+
+
     </script>
 </head>
 
@@ -243,14 +252,32 @@
               <div class="form-group">
                 <label class="form-control" id="date_start" placeholder="Start Date" name="start_date">{{client_data['Start Date']}}</label>
               </div>
-              <label for="files_form" class="form-control ">Upload client files</label>
+              <label for="files_form" class="form-control ">Client Files</label>
               {%for file in client_data['Files']%}
-              <div class="form-group" id="files_form">
+              {% if 'summary' not in file %}
+
+              <div class="form-group " id="files_form">
                 <a href="{{file[1:]}}"class="form-control" name="file1" id="1" >{{file.split('/')[-1]}}</a>
               </div>
+              {% endif %}
               {%endfor%}
-            <!-- <button type="button" class="btn btn-primary btn-user btn-block" value="Add Client" id="btn-final-my">Add Client</button> -->
+             <form class="user" action="/clients_add" method="POST" enctype="multipart/form-data" id="myform_addfiles"> 
+            <input type="file" name="case_file" class="btn btn-primary btn-user btn-block" value="Add Case Files">Add Case Files 
+          </form>
+            <form class="user" action="/clients_add" method="POST" enctype="multipart/form-data" id="myform">
+            <input type="file" name = "invoice_file" class="btn btn-primary btn-user btn-block" value="Add Invoice">Add Invoice
+
+          </form>
+
+
             <hr>
+
+            {% for file in client_data['Files'] %}
+            {% if 'summary' in file %}
+                <p>{{file[8:]}}</p>
+              {% endif %}
+              {% endfor %}
+
           </form>
 
 

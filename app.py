@@ -69,11 +69,15 @@ def handle_client():
             files.save(path+'/'+files.filename)
             client['Files'].append(path+'/'+files.filename)
         client_db.insert(client)
-    clients = client_db.all()
-    for x in clients:
-        year,month,day = map(int,x['Date Of Birth'].split('-'))
-        x['age'] = (int((date.today() - date(year,month,day)).days / 365.2425 ) )
-    return render_template('add_client.html',user_data = session['user_data'],clients=clients)
+        # clients = client_db.all()
+ 
+        return redirect('/clients')
+    else:
+        clients = client_db.all()
+        for x in clients:
+            year,month,day = map(int,x['Date Of Birth'].split('-'))
+            x['age'] = (int((date.today() - date(year,month,day)).days / 365.2425 ) )
+        return render_template('add_client.html',user_data = session['user_data'],clients=clients)
 
 
 @app.route('/testing1')
@@ -84,4 +88,4 @@ def row_click():
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(debug=True)
+    app.run(debug=True,port=3000)

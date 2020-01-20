@@ -178,12 +178,12 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <Button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">New Client</Button>
+              <div class="nav-link dropdown-toggle"  role="button"  aria-haspopup="true" aria-expanded="false">
+                <Button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@mdo">New Client</Button>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">+</span>
                 <!-- Counter - Alerts -->
-              </a>
+              </div>
               <!-- Dropdown - Alerts -->
             </li>
 
@@ -272,7 +272,7 @@
                   </tfoot>
                   <tbody>
                       {% for client in clients %}
-                    <tr onclick="document.location = &quot;{{ url_for('row_click') }}&quot;">
+                    <tr  data-target="{{'#'+client['uid']}}" data-toggle="modal">
                       <td>{{client['uid']}}</td>
                       <td>{{client['First Name']+' '+client['Last Name']}}</td>
                       <td>{{client['age']}}</td>
@@ -314,30 +314,12 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="/logout">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">New Client</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -372,12 +354,31 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <!-- <button type="button" class="btn btn-primary">Add Client</button> -->
         </div>
       </div>
     </div>
   </div>
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="../static/vendor/jquery/jquery.min.js"></script>

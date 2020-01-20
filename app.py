@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,session,abort,flash,redirect
+from flask import Flask,render_template,request,session,abort,flash,redirect,Response
 import os
 import uuid
 from tinydb import TinyDB, Query,where
@@ -92,6 +92,7 @@ def handle_client():
         return render_template('add_client.html',user_data = session['user_data'],clients=clients)
 
 
+<<<<<<< HEAD
 @app.route('/lawyers',methods=['GET','POST'])
 def handle_lawyer():
     if not session.get('logged_in',False):
@@ -131,9 +132,32 @@ def handle_lawyer():
 @app.route('/testing1')
 def row_click():
     return 'Hello World!'
+=======
+@app.route('/clients/<id>',methods=['GET'])
+def handle_get_client(id):
+    if not session.get('logged_in',False):
+        return render_template('login.html')
+    u = Query()
+    res = client_db.search(u.uid == id)
+    for i in range(len(res[0]['Files'])):
+        if 'summary' in res[0]['Files'][i]:
+            res[0]['Files'][i] = 'summary\n'+open(res[0]['Files'][i],'r').read()
+
+    #print(res[0]['Files'])
+    # try:
+    return render_template('client.html',client_data=res[0],user_data=session['user_data'])
+    # except:
+    #     return 'No'
+
+    
+
+# @app.errorhandler(404) 
+# def invalid_route(e): 
+#     return render_template('404.html')
+>>>>>>> 604d5e8e181780e876c9502f049bb2e681ded5bd
 
 
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(debug=True,port=3000)
+    app.run(port=3000)

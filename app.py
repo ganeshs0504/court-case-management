@@ -88,4 +88,4 @@ def row_click():
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(debug=True,port=3000)
+    app.run(port=3000)

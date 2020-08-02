@@ -179,7 +179,7 @@
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <div class="nav-link dropdown-toggle"  role="button"  aria-haspopup="true" aria-expanded="false">
-                <Button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@mdo">New Client</Button>
+                <Button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@mdo">New Lawyer</Button>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">+</span>
                 <!-- Counter - Alerts -->
@@ -229,7 +229,7 @@
         <div class="container-fluid">
                    <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Clients</h1>
+            <h1 class="h3 mb-0 text-gray-800">Lawyers</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -241,43 +241,47 @@
           <!-- Content Row -->
 
           <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Clients </h1> -->
-          <p class="mb-4">Contains all the clients handled by the firm</p>
+          <!-- <h1 class="h3 mb-2 text-gray-800">Lawyers </h1> -->
+          <p class="mb-4">Contains all the lawyers handled by the firm</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Client List</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lawyer List</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Client ID</th>
+                      <th>Bar ID</th>
                       <th>Name</th>
                       <th>Age</th>
                       <th>Phone</th>
                       <th>Start Date</th>
+                      <th>Expertise</th>
                     </tr>
                   </thead>
                   <tfoot>
-                    <tr >
-                        <th>Client ID</th>
+                    <tr>
+                        <th>Bar ID</th>
                         <th>Name</th>
                         <th>Age</th>
                         <th>Phone</th>
                         <th>Start Date</th>
+                        <th>Expertise</th>
+
                     </tr>
                   </tfoot>
                   <tbody>
-                    {% for client in clients %}
-                    <tr onclick="document.location = &quot;{{ '/clients/' + client['uid'] }}&quot;">
-                      <td>{{client['uid']}}</td>
-                      <td>{{client['First Name']+' '+client['Last Name']}}</td>
-                      <td>{{client['age']}}</td>
-                      <td>{{client['Phone']}}</td>
-                      <td>{{client['Start Date']}}</td>
+                      {% for lawyer in lawyers %}
+                    <tr  data-target="{{'#'+lawyer['uid']}}" data-toggle="modal">
+                      <td>{{lawyer['uid']}}</td>
+                      <td>{{lawyer['First Name']+' '+lawyer['Last Name']}}</td>
+                      <td>{{lawyer['age']}}</td>
+                      <td>{{lawyer['Phone']}}</td>
+                      <td>{{lawyer['Start Date']}}</td>
+                      <td>{{lawyer['Area of Expertise']}}</td>
                     </tr>
                     {% endfor %}
                   
@@ -318,13 +322,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">New Client</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">New Lawyer</h5>
           <button type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form class="user" action="/clients" method="POST" enctype="multipart/form-data" id="myform">
+            <form class="user" action="/lawyers" method="POST" enctype="multipart/form-data" id="myform">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" name="fname">
@@ -345,32 +349,20 @@
                   <div class="form-group">
                     <input type="date" class="form-control form-control-user" id="date_start" placeholder="Start Date" name="start_date">
                   </div>
-<<<<<<< HEAD
-                   <label for="aoe_form" class="form-control form-control-user">Expertise</label>
-                  <div class="form-group" id="aoe_form">
-                    <input type="file" class="form-control" name="file1" id="1" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
+                  <div class="form-group" >
+                    <input type="text" class="form-control form-control-user" name="aoe" placeholder="Area of Expertise" id="aoe" >
                   </div>
-                  <label for="files_form" class="form-control form-control-user">Upload client files</label>
-=======
-                  <label for="files_form" class="form-control form-control-user">Upload Case file</label>
->>>>>>> 604d5e8e181780e876c9502f049bb2e681ded5bd
+                  <label for="files_form" class="form-control form-control-user">Upload lawyer files</label>
                   <div class="form-group" id="files_form">
                     <input type="file" class="form-control" name="file1" id="1" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
                   </div>
-
-                  <label for="files_form" class="form-control form-control-user">Upload summary file</label>
-                  <div class="form-group" id="files_form">
-                    <input type="file" class="form-control" name="files1" id="s1" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf">
-                  </div>
-
-
-                <button type="button" class="btn btn-primary btn-user btn-block" value="Add Client" id="btn-final-my">Add Client</button>
+                <button type="button" class="btn btn-primary btn-user btn-block" value="Add Lawyer" id="btn-final-my">Add Lawyer</button>
                 <hr>
               </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Add Client</button> -->
+          <!-- <button type="button" class="btn btn-primary">Add Lawyer</button> -->
         </div>
       </div>
     </div>

@@ -8,4 +8,4 @@ A Flask website that acts as a repository of court cases and enables.
 The website also creates summaries/gists of case documents generated using the [BERT](https://huggingface.co/transformers/model_doc/bert.html) pre trained transformer. Summaries allow the lawyers to get an understanding of what the case is about without reading the entire document.
 
 ## Screenshots
-![Dashboard](https://github.com/range123/Court-Case-Management/screenshots/dashboard.png)
+![Dashboard](https://github.com/range123/Court-Case-Management/blob/master/screenshots/dashboard.png)

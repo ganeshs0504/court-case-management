@@ -93,7 +93,6 @@ def handle_client():
         return render_template('add_client.html',user_data = session['user_data'],clients=clients)
 
 
-<<<<<<< HEAD
 @app.route('/lawyers',methods=['GET','POST'])
 def handle_lawyer():
     if not session.get('logged_in',False):
@@ -133,7 +132,7 @@ def handle_lawyer():
 @app.route('/testing1')
 def row_click():
     return 'Hello World!'
-=======
+
 @app.route('/clients/<id>',methods=['GET'])
 def handle_get_client(id):
     if not session.get('logged_in',False):
@@ -155,7 +154,7 @@ def handle_get_client(id):
 # @app.errorhandler(404) 
 # def invalid_route(e): 
 #     return render_template('404.html')
->>>>>>> 604d5e8e181780e876c9502f049bb2e681ded5bd
+
 
 
 

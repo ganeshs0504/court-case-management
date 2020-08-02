@@ -20,6 +20,7 @@ def get_id():
 def handle_home():
     if not session.get('logged_in',False):
         return render_template('login.html')
+    
     return render_template('main.html',user_data=session['user_data'])
 
 @app.route('/login',methods=['POST'])
